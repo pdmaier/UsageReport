@@ -1,3 +1,7 @@
+Hello, welcome to this repo! I've put this together as a way of showcasing a reporting mechanism that I created while working with Adaptemy in the Spring of 2015. I've changed data in tGhergulescu. he sets to protect confidentiality, but the functionality of the process works just as the below document describes. 
+
+All technical work in this project was originally created by me, with the exception of the line graph design and scripting, which was created by my colleague Dr. Ioana Ghergulescu. She also created the Word template that the graphs fit into, and was a guide and help throughout the development process. Thanks!
+
 ---
 title: "Weekly Usage Report Process"
 author: "Paul Maier"
