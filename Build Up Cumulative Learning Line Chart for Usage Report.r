@@ -1,10 +1,13 @@
-linechart <- function()
+## This script was originally created by Dr. Ioana Ghergulescu, Head of Adaptive Learning at Adaptemy.
+## I, Paul Maier, subsequently edited it so its axes were easier to manipulate and the script was easier to reproduce.
+
+linechart <- function(minweek, maxweek, y1, y2)
 
 {
 
-	#setwd("D:/Ioana Google Drive/Data Analytics/FolensReports")
+	# setwd("D:/Ioana Google Drive/Data Analytics/FolensReports")
 	# author: Ioana Ghergulescu
-	stats = read.csv("line_chart_data_BU_week_39.csv")
+	stats = read.csv("line_chart_data_BU_week_maxweek.csv")
 
 	str(stats)
 	summary(stats)
@@ -35,25 +38,25 @@ linechart <- function()
 
 
 	# Plot Learning Hours
-	plot(x = statsCumul$WeekNum, y = statsCumul$LearnHours, axes=FALSE, main="", xlab="", ylab="", type="l", lty=1, lwd=2.5, xlim=c(32,39), ylim=c(0,500), col=lineCols[1])
+	plot(x = statsCumul$WeekNum, y = statsCumul$LearnHours, axes=FALSE, main="", xlab="", ylab="", type="l", lty=1, lwd=2.5, xlim=c(minweek,maxweek), ylim=c(0,y1), col=lineCols[1])
 
 	# Plot number Concepts
 	lines(x = statsCumul$WeekNum, y = statsCumul$Concepts, type="l", lty=2, lwd=2.5, col=lineCols[2])
 
 	# Add 1st Y axis
-	axis(side=2, lwd=1, ylim=c(0,500), at = seq(0,500,100))
+	axis(side=2, lwd=1, ylim=c(0,y1), at = seq(0,y1,100))
 	mtext(2, text="Learning Hours / Concepts", line=2.5)
 
 	# Plot number Sparks (this will go on new y axis)
 	par(new=T)
-	plot(x = statsCumul$WeekNum, y = statsCumul$Sparks, axes=FALSE, main="", xlab="", ylab="", type="l", lty=4, lwd=2.5, xlim=c(32,39), ylim=c(0,80000), col=lineCols[3])
+	plot(x = statsCumul$WeekNum, y = statsCumul$Sparks, axes=FALSE, main="", xlab="", ylab="", type="l", lty=4, lwd=2.5, xlim=c(minweek,maxweek), ylim=c(0,y2), col=lineCols[3])
 
 	# Plot number Skillpoints
 	lines(x = statsCumul$WeekNum, y = statsCumul$Skillpoints, type="l", lty=6, lwd=2.5, col=lineCols[4])
 
 	# Add 2nd Y axis
 	options(scipen=5)
-	axis(side=4, lwd=1, ylim=c(0,80000), at=seq(0, 80000, 10000))
+	axis(side=4, lwd=1, ylim=c(0,y2), at=seq(0, y2, 10000))
 	mtext(4, text="Sparks / Skillpoints", line=2.5)
 
 	# Add X axis
@@ -67,7 +70,7 @@ linechart <- function()
 	grid(lty=1)
 
 	# And plot legend
-	legend(x=32, y=80000, cex = 0.8, lty=c(1,2,4,6), lwd=2, seg.len=5, bg="white", col=lineCols, legend=c("Number of Learning Hours", "Number of Concepts", "Number of Sparks", "Number of Skillpoints"))
+	legend(x=minweek, y=y2, cex = 0.8, lty=c(1,2,4,6), lwd=2, seg.len=5, bg="white", col=lineCols, legend=c("Number of Learning Hours", "Number of Concepts", "Number of Sparks", "Number of Skillpoints"))
 
 	# Draw box around plot
 	box(which = "plot", col = "black", lwd = 1)
